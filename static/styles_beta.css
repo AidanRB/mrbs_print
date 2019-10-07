@@ -1,0 +1,226 @@
+:root {
+    --eventsfontsize: 9pt;
+    /* schedule size */
+    --papertop: .9in;
+    --scheduletop: .6in;
+    --scheduleleft: .5in;
+    --scheduleheight: 10in;
+    --schedulewidth: 7.5in;
+    /* header top */
+    --headertop: calc(var(--scheduletop) - .5in);
+    /* cell sizes */
+    --daywidth: calc(var(--schedulewidth) / 2 - .01in);
+    --normaldayheight: calc(var(--scheduleheight) / 3 - .01in);
+    --halfdayheight: calc((var(--normaldayheight) + .01in) / 2 - .01in);
+    /* cell positions */
+    --secondcolumnleft: calc(var(--scheduleleft) + var(--daywidth) + .01in);
+    --secondrowtop: calc(var(--scheduletop) + var(--normaldayheight) + .01in);
+    --thirdrowtop: calc(var(--secondrowtop) + var(--normaldayheight) + .01in);
+    --thirdhalfrowtop: calc(var(--thirdrowtop) + var(--halfdayheight) + .01in)
+}
+
+@media print {
+    :root {
+        --papertop: 0in;
+    }
+}
+
+html {
+    font-family: roboto slab;
+}
+
+body {
+    margin: 0;
+}
+
+.notprinted {
+    position: absolute;
+    left: .25in;
+    top: .2in;
+    color: darkslategray;
+}
+
+.navigation {
+    position: absolute;
+    left: .25in;
+    width: 7.5in;
+}
+
+.navigation td {
+    width: 3.75in;
+    text-align: center;
+}
+
+.navigation td a {
+    border-radius: 2px;
+    display: block;
+    width: 100%;
+}
+
+.navigation td a:link, .navigation td a:visited {
+    color: darkslategray;
+    transition: 250ms;
+}
+
+.navigation td a:hover {
+    background-color: darkslategray;
+    color: white;
+}
+
+.paper {
+    position: absolute;
+    width: 8.5in;
+    height: 11in;
+    border: darkgray solid 0.02in;
+    top: var(--papertop);
+}
+
+@media print {
+    .paper {
+        border: none;
+    }
+
+    .notprinted {
+        display: none;
+    }
+}
+
+.header {
+    position: absolute;
+    top: var(--headertop);
+    left: var(--scheduleleft);
+    width: var(--schedulewidth);
+}
+
+.weeknumber {
+    font-size: 200%;
+    font-variant: all-small-caps;
+    display: inline-block;
+}
+
+.month {
+    float: right;
+    font-size: 200%;
+    display: inline-block;
+}
+
+.day0, .day1, .day2, .day3, .day4, .day5, .day6 {
+    border-color: black;
+    border-width: .01in;
+    border-style: solid;
+}
+
+.day0 {
+    width: var(--daywidth);
+    height: var(--normaldayheight);
+    position: absolute;
+    top: var(--scheduletop);
+    left: var(--scheduleleft);
+}
+
+.day1 {
+    width: var(--daywidth);
+    height: var(--normaldayheight);
+    position: absolute;
+    top: var(--scheduletop);
+    left: var(--secondcolumnleft);
+}
+
+.day2 {
+    width: var(--daywidth);
+    height: var(--normaldayheight);
+    position: absolute;
+    top: var(--secondrowtop);
+    left: var(--scheduleleft);
+}
+
+.day3 {
+    width: var(--daywidth);
+    height: var(--normaldayheight);
+    position: absolute;
+    top: var(--secondrowtop);
+    left: var(--secondcolumnleft);
+}
+
+.day4 {
+    width: var(--daywidth);
+    height: var(--normaldayheight);
+    position: absolute;
+    top: var(--thirdrowtop);
+    left: var(--scheduleleft);
+}
+
+.day5 {
+    width: var(--daywidth);
+    position: absolute;
+    top: var(--thirdrowtop);
+    left: var(--secondcolumnleft);
+    height: var(--halfdayheight);
+}
+
+.day6 {
+    width: var(--daywidth);
+    position: absolute;
+    top: var(--thirdhalfrowtop);
+    left: var(--secondcolumnleft);
+    height: var(--halfdayheight);
+}
+
+.dayhead {
+    width: 100%;
+    text-align: right;
+}
+
+.dayheadleft {
+    text-align: right;
+    display: inline-block;
+}
+
+.weekday {
+    font-weight: bold;
+    font-variant: small-caps;
+    display: inline-block;
+}
+
+.dayheadmonth {
+    margin-top: -0.06in;
+}
+
+.daynumber {
+    margin-bottom: -.05in;
+    margin-top: -.02in;
+    padding-right: 0.07in;
+    font-size: 220%;
+    display: inline-block;
+}
+
+.events {
+    font-size: var(--eventsfontsize);
+}
+
+.events table {
+    width: 100%;
+}
+
+.events table tr td {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.title {
+    width: 1%;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.times {
+    width: 1%;
+    white-space: nowrap;
+}
+
+.rooms {
+    padding-left: .05in;
+    border-color: black;
+    border-width: .01in;
+    border-left-style: solid;
+}

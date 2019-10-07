@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<html>
+
+<head>
+    <title>login - mrbs_print</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='form.css') }}">
+</head>
+
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message[1] }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+    <form method="post" action="">
+        <label for="Username">Username:</label>
+        <input type="text" id="username" name="username" value="">
+        <br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" value="">
+        <br><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>form - mrbs_print</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='form.css') }}">
+</head>
+
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message[1] }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+    <form method="get" action="print">
+        <label for="start_date">Start date:</label>
+        <input type="date" id="start_date" name="from_date" value="{{ last_monday }}">
+        <br><br>
+        <label for="areamatch">Area:</label>
+        <input type="text" id="areamatch" name="areamatch" value="{{ defaultarea }}" placeholder="{{ placeholder }}">
+        <br><br><br>
+        <input type="submit" value="Show week">
+    </form>
+</body>
+
+</html>

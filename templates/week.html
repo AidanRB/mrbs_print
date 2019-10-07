@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>week of {{ from_date }} - mrbs_print</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles_beta.css') }}">
+</head>
+
+<body>
+    <div class="notprinted">
+        Press ctrl+P to print<br>
+        For best results, print with margins set to none
+        <div class="navigation">
+            <table>
+                <tbody>
+                    <tr>
+                        <td><a href="print?from_date={{ prevweek }}&areamatch={{ areas }}">
+                                << PREV</a> </td>
+                        <td><a href="print?from_date={{ nextweek }}&areamatch={{ areas }}">
+                                NEXT >></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="paper">
+        <div class="header">
+            <div class="weeknumber">WEEK {{ weeknumber }}</div>
+            <div class="month">{{ month }}</div>
+        </div>
+        {% for i in range(7) %}
+        <div class="day{{ i }}">
+            <div class="dayhead">
+                <div class="dayheadleft">
+                    <div class="weekday">{{ weekdays[i] }}</div>
+                    <div class="dayheadmonth">{{ months[i] }}</div>
+                </div>
+                <div class="daynumber">{{ daynumbers[i] }}</div>
+            </div>
+            <div class="events">
+                <table>
+                    <tbody>
+                        {% for event in events[i] %}
+                        <tr>
+                            <td class="times">{{ event[0] }}</td>
+                            <td class="rooms">{{ event[1] }}</td>
+                            <td class="title">{{ event[2] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
